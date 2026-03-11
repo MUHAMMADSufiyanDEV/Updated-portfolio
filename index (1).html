@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUHAMMAD Sufiyan | Full-Stack & SEO Specialist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono&display=swap');
+        
+        :root {
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.5);
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #030712;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Glassmorphism Classes */
+        .glass {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 25px var(--accent-glow);
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        /* Navigation Dot */
+        .nav-link.active {
+            color: var(--accent);
+        }
+        .nav-link.active::after {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin: 4px auto 0;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        /* Section Transition */
+        section { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        section.visible { opacity: 1; transform: translateY(0); }
+
+        .custom-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <nav class="fixed left-0 top-0 h-full w-20 hidden md:flex flex-col items-center justify-center gap-10 z-50 glass border-r border-white/10">
+        <a href="#home" class="nav-link text-slate-400 hover:text-white transition-all"><i class="fa-solid fa-house text-xl"></i></a>
+        <a href="#about" class="nav-link text-slate-400 hover:text-white transition-all"><i class="fa-solid fa-user text-xl"></i></a>
+        <a href="#skills" class="nav-link text-slate-400 hover:text-white transition-all"><i class="fa-solid fa-gears text-xl"></i></a>
+        <a href="#projects" class="nav-link text-slate-400 hover:text-white transition-all"><i class="fa-solid fa-code text-xl"></i></a>
+        <a href="#seo" class="nav-link text-slate-400 hover:text-white transition-all"><i class="fa-solid fa-chart-line text-xl"></i></a>
+        <a href="#contact" class="nav-link text-slate-400 hover:text-white transition-all"><i class="fa-solid fa-paper-plane text-xl"></i></a>
+    </nav>
+
+    <div class="md:ml-20">
+        
+        <section id="home" class="min-h-screen flex flex-col items-center justify-center p-6 text-center">
+            <div class="relative mb-8">
+                <div class="absolute -inset-4 bg-blue-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+                <img src="https://avatars.githubusercontent.com/u/187929395?v=4" alt="Muhammad Sufiyan" class="relative w-48 h-48 rounded-2xl border border-white/20 rotate-3 hover:rotate-0 transition-transform duration-500 shadow-2xl">
+            </div>
+            <h1 class="text-6xl md:text-9xl font-bold tracking-tighter mb-4 uppercase">Sufiyan<span class="text-blue-500">.</span></h1>
+            <p class="mono text-blue-400 text-lg md:text-xl mb-8 tracking-widest uppercase">Full-Stack Architect & SEO Strategist</p>
+            <div class="flex gap-4">
+                <a href="#projects" class="px-10 py-4 bg-blue-600 rounded-full font-bold hover:bg-blue-700 transition-all shadow-[0_0_20px_rgba(59,130,246,0.4)]">EXPLORE WORK</a>
+                <a href="https://www.linkedin.com/in/muhammad-sufiyan-b7a99277" target="_blank" class="px-10 py-4 glass rounded-full font-bold hover:bg-white/10 transition-all">LINKEDIN</a>
+            </div>
+        </section>
+
+        <section id="about" class="min-h-screen max-w-6xl mx-auto px-6 py-32">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-sm mono text-blue-500 mb-2 uppercase tracking-[0.3em]">/ 01 Background</h2>
+                    <h3 class="text-4xl font-bold mb-6">Bridging Code and Strategy.</h3>
+                    <div class="space-y-4 text-slate-400 text-lg leading-relaxed">
+                        <p>Based in Karachi, Pakistan, I specialize in building high-performance web applications that don't just look good but rank on page one of Google.</p>
+                        <p>With a background in web development and a deep specialization in **Technical SEO**, I help brands like *Grow More* and *VJ-Insights* dominate their digital niches.</p>
+                    </div>
+                    <div class="mt-10 grid grid-cols-2 gap-4">
+                        <div class="glass p-4 rounded-xl">
+                            <p class="text-blue-500 font-bold text-2xl">78+</p>
+                            <p class="text-xs uppercase text-slate-500">GitHub Repos</p>
+                        </div>
+                        <div class="glass p-4 rounded-xl">
+                            <p class="text-purple-500 font-bold text-2xl">SEO</p>
+                            <p class="text-xs uppercase text-slate-500">Top 1% Skills</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card p-10 rounded-3xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10"><i class="fa-brands fa-linkedin text-9xl"></i></div>
+                    <h4 class="text-xl font-bold mb-4">LinkedIn Insights</h4>
+                    <ul class="space-y-6 text-sm">
+                        <li class="flex gap-4">
+                            <div class="w-10 h-10 rounded bg-blue-500/10 flex items-center justify-center text-blue-500"><i class="fa-solid fa-briefcase"></i></div>
+                            <div>
+                                <p class="font-bold">Lead Web Developer</p>
+                                <p class="text-slate-500 italic text-xs uppercase">Full-Time Experience</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="w-10 h-10 rounded bg-purple-500/10 flex items-center justify-center text-purple-500"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <div>
+                                <p class="font-bold">SEO Certified Professional</p>
+                                <p class="text-slate-500 text-xs uppercase">Technical & On-Page Mastery</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="min-h-screen max-w-6xl mx-auto px-6 py-32">
+            <h2 class="text-sm mono text-blue-500 mb-2 uppercase tracking-[0.3em]">/ 02 Capabilities</h2>
+            <h3 class="text-5xl font-bold mb-16">The Tech Stack<span class="text-blue-500">.</span></h3>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="md:col-span-2 glass-card p-8 rounded-2xl">
+                    <h4 class="text-blue-400 font-bold mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-terminal"></i> Frontend & Backend
+                    </h4>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 glass rounded-lg text-sm">React.js</span>
+                        <span class="px-4 py-2 glass rounded-lg text-sm">Next.js</span>
+                        <span class="px-4 py-2 glass rounded-lg text-sm">TypeScript</span>
+                        <span class="px-4 py-2 glass rounded-lg text-sm">Laravel (PHP)</span>
+                        <span class="px-4 py-2 glass rounded-lg text-sm">Node.js</span>
+                        <span class="px-4 py-2 glass rounded-lg text-sm">Tailwind CSS</span>
+                        <span class="px-4 py-2 glass rounded-lg text-sm">MySQL</span>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl">
+                    <h4 class="text-green-400 font-bold mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i> SEO Suite
+                    </h4>
+                    <div class="space-y-4">
+                        <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden">
+                            <div class="bg-green-500 h-full w-[95%]"></div>
+                        </div>
+                        <p class="text-xs text-slate-500 uppercase">Technical SEO - 95%</p>
+                        <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden">
+                            <div class="bg-blue-500 h-full w-[88%]"></div>
+                        </div>
+                        <p class="text-xs text-slate-500 uppercase">Ahrefs/SEMrush - 88%</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl">
+                    <h4 class="text-pink-400 font-bold mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-palette"></i> Design
+                    </h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center"><i class="fa-brands fa-figma text-2xl mb-1"></i><p class="text-[10px]">Figma</p></div>
+                        <div class="text-center"><i class="fa-solid fa-image text-2xl mb-1"></i><p class="text-[10px]">Photoshop</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="min-h-screen max-w-6xl mx-auto px-6 py-32">
+            <h2 class="text-sm mono text-blue-500 mb-2 uppercase tracking-[0.3em]">/ 03 Portfolio</h2>
+            <h3 class="text-5xl font-bold mb-16">Selected Builds<span class="text-blue-500">.</span></h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-card rounded-2xl p-6 group">
+                    <div class="h-40 bg-gradient-to-tr from-red-600/20 to-orange-500/20 rounded-xl mb-6 flex items-center justify-center border border-white/5">
+                        <i class="fa-solid fa-mask-ventilator text-5xl text-red-500 opacity-50"></i>
+                    </div>
+                    <h4 class="text-xl font-bold group-hover:text-blue-400 transition-colors">Iron Man HUD UI</h4>
+                    <p class="text-sm text-slate-500 mt-2 mb-4">Pixel-perfect, high-animation HUD built with pure HTML/CSS and GSAP logic.</p>
+                    <div class="flex justify-between items-center mt-6">
+                        <span class="mono text-[10px] text-blue-500">CSS / GSAP</span>
+                        <a href="https://github.com/MUHAMMADSufiyanDEV" class="text-white hover:underline text-xs">View Repo <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i></a>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 group">
+                    <div class="h-40 bg-gradient-to-tr from-blue-600/20 to-cyan-500/20 rounded-xl mb-6 flex items-center justify-center border border-white/5">
+                        <i class="fa-solid fa-chart-area text-5xl text-blue-500 opacity-50"></i>
+                    </div>
+                    <h4 class="text-xl font-bold group-hover:text-blue-400 transition-colors">SEO Rank Tracker</h4>
+                    <p class="text-sm text-slate-500 mt-2 mb-4">Automated dashboard for monitoring keyword density and SERP ranking health.</p>
+                    <div class="flex justify-between items-center mt-6">
+                        <span class="mono text-[10px] text-blue-500">React / API</span>
+                        <a href="https://github.com/MUHAMMADSufiyanDEV" class="text-white hover:underline text-xs">View Repo <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i></a>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 group">
+                    <div class="h-40 bg-gradient-to-tr from-purple-600/20 to-pink-500/20 rounded-xl mb-6 flex items-center justify-center border border-white/5">
+                        <i class="fa-solid fa-building text-5xl text-purple-500 opacity-50"></i>
+                    </div>
+                    <h4 class="text-xl font-bold group-hover:text-blue-400 transition-colors">Grow More Platform</h4>
+                    <p class="text-sm text-slate-500 mt-2 mb-4">Full-stack news platform optimized for core web vitals and fast indexing.</p>
+                    <div class="flex justify-between items-center mt-6">
+                        <span class="mono text-[10px] text-blue-500">Laravel / PHP</span>
+                        <a href="https://github.com/MUHAMMADSufiyanDEV" class="text-white hover:underline text-xs">View Repo <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="seo" class="min-h-screen bg-slate-900/50 py-32">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-sm mono text-blue-500 mb-2 uppercase tracking-[0.3em]">/ 04 Strategy</h2>
+                <h3 class="text-5xl font-bold mb-16">SEO Optimization Case<span class="text-blue-500">.</span></h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-8 border-l border-white/10 glass-card">
+                        <h5 class="font-bold text-blue-400 mb-2 underline decoration-blue-500/30">Australian Open 2026</h5>
+                        <p class="text-sm text-slate-400 leading-relaxed">Executed a 1500-word content strategy for the Men's Final (Djokovic vs Alcaraz), achieving top-tier ranking via LSI and NLP term density.</p>
+                    </div>
+                    <div class="p-8 border-l border-white/10 glass-card">
+                        <h5 class="font-bold text-blue-400 mb-2 underline decoration-blue-500/30">VJ-Insights Branding</h5>
+                        <p class="text-sm text-slate-400 leading-relaxed">Engineered technical SEO foundations for a UK daily news platform, reducing page load time to < 1.2s for mobile users.</p>
+                    </div>
+                    <div class="p-8 border-l border-white/10 glass-card">
+                        <h5 class="font-bold text-blue-400 mb-2 underline decoration-blue-500/30">TikTok Branding (CR7)</h5>
+                        <p class="text-sm text-slate-400 leading-relaxed">Optimized video metadata and descriptions for a Cristiano Ronaldo niche channel, maximizing organic reach on "CR7 Rush".</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="min-h-screen max-w-6xl mx-auto px-6 py-32 flex flex-col items-center justify-center text-center">
+            <h2 class="text-5xl md:text-8xl font-bold mb-10 custom-gradient">Ready to build?</h2>
+            <p class="text-slate-400 text-xl max-w-2xl mb-12">I am currently open to new collaborations in Web Development, SEO audits, and Custom UI Design.</p>
+            
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+                <a href="mailto:muhammad.sufiyan@example.com" class="text-2xl font-bold hover:text-blue-500 transition-colors">muhammad.sufiyan@example.com</a>
+                <div class="hidden md:block w-px h-10 bg-white/10"></div>
+                <div class="flex gap-6">
+                    <a href="https://github.com/MUHAMMADSufiyanDEV" target="_blank" class="text-3xl text-slate-500 hover:text-white"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/muhammad-sufiyan-b7a99277" target="_blank" class="text-3xl text-slate-500 hover:text-white"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="p-8 border-t border-white/10 bg-black/50">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="mono text-[10px] text-slate-600 uppercase tracking-widest">
+                    SYSTEM STATUS: <span class="text-green-500">OPERATIONAL</span> | LOC: KARACHI, PK
+                </div>
+                <div class="text-[10px] text-slate-600 mono">
+                    © 2026 MUHAMMAD SUFIYAN - BUILT WITH TAILWIND & THREE.JS
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // Three.js Background
+        const canvas = document.querySelector('#bg-canvas');
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 2;
+
+        // Space Stars
+        const starGeo = new THREE.BufferGeometry();
+        const starCount = 3000;
+        const starPos = new Float32Array(starCount * 3);
+        for(let i=0; i<starCount * 3; i++) {
+            starPos[i] = (Math.random() - 0.5) * 10;
+        }
+        starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+        const starMat = new THREE.PointsMaterial({ size: 0.005, color: 0x3b82f6 });
+        const stars = new THREE.Points(starGeo, starMat);
+        scene.add(stars);
+
+        let mouseX = 0;
+        let mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) - 0.5;
+            mouseY = (e.clientY / window.innerHeight) - 0.5;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            stars.rotation.y += 0.0005;
+            stars.rotation.x += 0.0002;
+            
+            // Mouse Parallax
+            gsap.to(stars.rotation, {
+                x: mouseY * 0.5,
+                y: mouseX * 0.5,
+                duration: 2
+            });
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Intersection Observer for Reveal
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Nav Highlighting
+                    const id = entry.target.getAttribute('id');
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
+
+        // Window Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
