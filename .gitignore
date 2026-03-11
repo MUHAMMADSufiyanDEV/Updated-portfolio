@@ -1,0 +1,38 @@
+## Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+## Build
+dist/
+build/
+
+## Env
+.env
+.env.*
+
+## Logs
+*.log
+
+## OS
+.DS_Store
+Thumbs.db
+
+## Editor / IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+## Misc
+coverage/
+.nyc_output/
+/.cache
+
+## Lockfiles (optional)
+# package-lock.json
+# yarn.lock
+
